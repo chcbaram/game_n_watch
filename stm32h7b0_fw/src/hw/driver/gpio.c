@@ -30,6 +30,7 @@ gpio_tbl_t gpio_tbl[GPIO_MAX_CH] =
   {GPIOD, GPIO_PIN_4,  _DEF_OUTPUT,  _DEF_HIGH, _DEF_LOW },  // 1. LCD_1.8V
   {GPIOB, GPIO_PIN_12, _DEF_OUTPUT,  _DEF_HIGH, _DEF_HIGH},  // 2. LCD_SPI_CS
   {GPIOD, GPIO_PIN_8,  _DEF_OUTPUT,  _DEF_HIGH, _DEF_HIGH},  // 3. LCD_PD8
+  {GPIOA, GPIO_PIN_2,  _DEF_INPUT,   _DEF_LOW,  _DEF_HIGH},  // 4. PGGOOD
 };
 
 
@@ -136,7 +137,7 @@ void gpioPinWrite(uint8_t channel, uint8_t value)
 
 uint8_t gpioPinRead(uint8_t channel)
 {
-  if (HAL_GPIO_ReadPin(gpio_tbl[channel].port, gpio_tbl[channel].pin) == GPIO_PIN_SET)
+  if (HAL_GPIO_ReadPin(gpio_tbl[channel].port, gpio_tbl[channel].pin) == gpio_tbl[channel].on_state)
   {
     return _DEF_HIGH;
   }

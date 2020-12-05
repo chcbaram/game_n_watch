@@ -22,6 +22,8 @@ extern "C" {
 #include "gpio.h"
 #include "spi.h"
 #include "lcd.h"
+#include "pwr.h"
+
 
 
 void hwInit(void);

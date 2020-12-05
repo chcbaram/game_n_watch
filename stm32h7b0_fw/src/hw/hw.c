@@ -24,4 +24,5 @@ void hwInit(void)
   gpioInit();
   spiInit();
   lcdInit();
+  pwrInit();
 }

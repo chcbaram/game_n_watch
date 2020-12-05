@@ -160,7 +160,6 @@ bool ltdcInit(void)
 
 
   ltdcRequestDraw();
-
   return ret;
 }
 

@@ -15,6 +15,8 @@
 
 
 
+#define _USE_HW_PWR
+
 
 
 
@@ -22,7 +24,7 @@
 #define      HW_LED_MAX_CH          3
 
 #define _USE_HW_GPIO
-#define      HW_GPIO_MAX_CH         4
+#define      HW_GPIO_MAX_CH         5
 
 #define _USE_HW_BUTTON
 #define      HW_BUTTON_MAX_CH       10
@@ -37,6 +39,19 @@
 
 #define _USE_HW_SPI
 #define      HW_SPI_MAX_CH          1
+
+
+
+#define _DEF_HW_BTN_LEFT            0
+#define _DEF_HW_BTN_RIGHT           1
+#define _DEF_HW_BTN_UP              2
+#define _DEF_HW_BTN_DOWN            3
+#define _DEF_HW_BTN_A               4
+#define _DEF_HW_BTN_B               5
+#define _DEF_HW_BTN_GAME            6
+#define _DEF_HW_BTN_TIME            7
+#define _DEF_HW_BTN_PAUSE           8
+#define _DEF_HW_BTN_POWER           9
 
 
 

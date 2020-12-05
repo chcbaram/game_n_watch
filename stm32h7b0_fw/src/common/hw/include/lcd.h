@@ -110,6 +110,7 @@ typedef struct
 
 
 bool lcdInit(void);
+bool lcdDeInit(void);
 bool lcdIsInit(void);
 void lcdReset(void);
 

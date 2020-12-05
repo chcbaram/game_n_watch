@@ -92,8 +92,18 @@ bool lcdInit(void)
   lcdSetup();
   ltdcInit();
 
-
+  delay(200);
   lcdSetBackLight(100);
+  return true;
+}
+
+bool lcdDeInit(void)
+{
+  // PowerOff
+  gpioPinWrite(pin_3_3, _DEF_HIGH);
+  gpioPinWrite(pin_1_8, _DEF_LOW);
+
+  lcdSetBackLight(0);
 
   return true;
 }
@@ -110,14 +120,14 @@ void lcdSetup(void)
 {
   spiBegin(spi_ch);
 
-
+  // PowerOff
   gpioPinWrite(pin_3_3, _DEF_HIGH);
   gpioPinWrite(pin_1_8, _DEF_LOW);
 
 
   gpioPinWrite(pin_cs,  _DEF_HIGH);
   gpioPinWrite(pin_pd8, _DEF_LOW);
-  delay(100);
+  delay(10);
 
   gpioPinWrite(pin_3_3, _DEF_LOW);
   delay(1);

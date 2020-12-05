@@ -19,14 +19,25 @@ void mpuInit(void);
 
 void bspInit(void)
 {
-  SCB_EnableICache();
-  SCB_EnableDCache();
-
   HAL_Init();
+
+  // Power pin as Input
+  HAL_PWR_DisableWakeUpPin(PWR_WAKEUP_PIN1_LOW);
+
+  /* Check if the system has resumed from StandBy mode */
+  if(__HAL_PWR_GET_FLAG(PWR_FLAG_SB) != RESET)
+  {
+    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
+  }
+  __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
+
 
   SystemClock_Config();
 
   __HAL_RCC_GPIOC_CLK_ENABLE();
+
+  SCB_EnableICache();
+  SCB_EnableDCache();
 
 
   mpuInit();
