@@ -47,3 +47,13 @@ void pwrEnterDeepSleep(void)
     __NOP();
   }
 }
+
+bool pwrUpdate(void)
+{
+  if (buttonGetRepeatCount(_DEF_HW_BTN_POWER) == 1)
+  {
+    pwrEnterDeepSleep();
+  }
+
+  return true;
+}

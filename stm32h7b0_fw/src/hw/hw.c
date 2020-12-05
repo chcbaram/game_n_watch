@@ -22,7 +22,9 @@ void hwInit(void)
   ledInit();
   buttonInit();
   gpioInit();
+  adcInit();
   spiInit();
   lcdInit();
   pwrInit();
+  batteryInit();
 }

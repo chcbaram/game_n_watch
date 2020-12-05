@@ -23,7 +23,8 @@ extern "C" {
 #include "spi.h"
 #include "lcd.h"
 #include "pwr.h"
-
+#include "adc.h"
+#include "battery.h"
 
 
 void hwInit(void);

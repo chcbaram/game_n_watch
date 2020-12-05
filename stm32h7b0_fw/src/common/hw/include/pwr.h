@@ -22,7 +22,7 @@ extern "C" {
 
 bool pwrInit(void);
 void pwrEnterDeepSleep(void);
-
+bool pwrUpdate(void);
 
 #endif
 
