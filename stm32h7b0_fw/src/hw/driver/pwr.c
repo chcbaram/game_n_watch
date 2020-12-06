@@ -41,6 +41,8 @@ void pwrEnterDeepSleep(void)
 
   HAL_PWR_EnterSTANDBYMode();
 
+  HAL_NVIC_SystemReset();
+
   // Execution stops here, this function will not return
   while(1)
   {

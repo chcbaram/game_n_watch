@@ -50,7 +50,7 @@ void batteryUpdate(void)
   int32_t vol = 0;
 
 
-  if (millis()-pre_time >= 10 && is_started == false)
+  if (millis()-pre_time >= 10 || is_started == false)
   {
     pre_time = millis();
 
