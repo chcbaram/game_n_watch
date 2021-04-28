@@ -11,6 +11,7 @@
 #include "ap.h"
 
 
+IMAGE_RES_DEF(img_logo);
 
 
 void apInit(void)
@@ -26,6 +27,11 @@ void apMain(void)
   uint32_t pre_time_draw;
   uint32_t draw_time = 0;
 
+  image_t logo;
+  int16_t img_x = 0;
+  int16_t img_y = 0;
+
+  logo = imageLoad(&img_logo);
 
   pre_time = millis();
   while(1)
@@ -65,12 +71,24 @@ void apMain(void)
         lcdPrintf(i*8+8*6, 16*4, white, "%d", gpioPinRead(i));
       }
 
-      lcdPrintfRect(0, 0, LCD_WIDTH, LCD_HEIGHT, red, 2, LCD_ALIGN_H_CENTER | LCD_ALIGN_V_BOTTOM,  "게임앤워치 보드");
+      lcdPrintfRect(0, 0, LCD_WIDTH, LCD_HEIGHT, blue, 2, LCD_ALIGN_H_CENTER | LCD_ALIGN_V_BOTTOM,  "게임앤워치 보드");
 
 
       //lcdDrawFillRect(x, 62, 30, 30, red);
       //lcdDrawFillRect(lcdGetWidth()-x, 92, 30, 30, green);
       //lcdDrawFillRect(x + 30, 122, 30, 30, blue);
+
+      int16_t speed = 5;
+
+      if (buttonGetPressed(_DEF_HW_BTN_LEFT))  img_x -= speed;
+      if (buttonGetPressed(_DEF_HW_BTN_RIGHT)) img_x += speed;
+      if (buttonGetPressed(_DEF_HW_BTN_UP))    img_y -= speed;
+      if (buttonGetPressed(_DEF_HW_BTN_DOWN))  img_y += speed;
+
+      img_x = constrain(img_x, 0, lcdGetWidth());
+      img_y = constrain(img_y, 0, lcdGetHeight());
+
+      imageDraw(&logo, img_x, img_y);
 
       draw_time = millis()-pre_time_draw;
 

@@ -354,7 +354,11 @@ void LTDC_IRQHandler(void)
 
 void HAL_LTDC_LineEvenCallback(LTDC_HandleTypeDef* hltdc)
 {
-  if (LTDC->LIPCR == lcd_int_active_line)
+  static uint8_t valid = 0;
+
+  valid ^= 1;
+
+  if (LTDC->LIPCR == lcd_int_active_line && valid > 0)
   {
     ltdcSwapFrameBuffer();
     HAL_LTDC_ProgramLineEvent(hltdc, lcd_int_active_line);

@@ -25,6 +25,7 @@ extern "C" {
 #include "pwr.h"
 #include "adc.h"
 #include "battery.h"
+#include "image.h"
 
 
 void hwInit(void);

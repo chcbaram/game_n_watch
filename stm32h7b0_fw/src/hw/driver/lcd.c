@@ -100,8 +100,8 @@ bool lcdInit(void)
 bool lcdDeInit(void)
 {
   // PowerOff
-  gpioPinWrite(pin_3_3, _DEF_HIGH);
-  gpioPinWrite(pin_1_8, _DEF_LOW);
+  //gpioPinWrite(pin_3_3, _DEF_HIGH);
+  //gpioPinWrite(pin_1_8, _DEF_LOW);
 
   lcdSetBackLight(0);
 
@@ -204,6 +204,9 @@ LCD_OPT_DEF uint32_t lcdReadPixel(uint16_t x_pos, uint16_t y_pos)
 
 LCD_OPT_DEF void lcdDrawPixel(uint16_t x_pos, uint16_t y_pos, uint32_t rgb_code)
 {
+  if (x_pos < 0 || x_pos >= LCD_WIDTH) return;
+  if (y_pos < 0 || y_pos >= LCD_HEIGHT) return;
+
   ltdc_draw_buffer[y_pos * LCD_WIDTH + x_pos] = rgb_code;
 }
 
@@ -744,7 +747,8 @@ void lcdPrintfResize(int x, int y, uint16_t color,  float ratio, const char *fmt
   r_src.p_data = lcd_buffer;
 
 
-
+  x = 0;
+  y = 0;
 
   len = vsnprintf(print_buffer, 255, fmt, arg);
   va_end (arg);
